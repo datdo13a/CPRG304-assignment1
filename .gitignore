@@ -1,0 +1,12 @@
+# Compiled code
+/target/
+/out/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Mac files
+.DS_Store
