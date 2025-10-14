@@ -31,7 +31,7 @@ public class ShapeSorter {
 
     // INSERTION SORT
     public static <T> void insertionSort(T[] array, Comparator<T> comparator) {
-        for (int i = 0; i < array.length - 1; i++ ) {
+        for (int i = 1; i < array.length; i++ ) {
             int j = i;
             while (j > 0 && comparator.compare(array[j], array[j-1]) > 0) {
                 swap(array, j, j-1);
@@ -111,7 +111,7 @@ public class ShapeSorter {
     }
 
     // HEAP SORT
-    private static <T> void heapSort(T[] array, Comparator<T> comparator, int low, int high) {
+    public static <T> void heapSort(T[] array, Comparator<T> comparator) {
 
     }
 
