@@ -134,6 +134,7 @@ public class AppDriver
 		// natural order (comparable) or other orders (comparators)
 
 		displayShapes(shapes);
+		System.out.println("sort total time taken: " + totalTime + "ms, using sortingType: " + sortingType);
 	}
 
     private static void parseArgs(String[] args) {
