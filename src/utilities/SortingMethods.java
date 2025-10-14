@@ -112,14 +112,45 @@ public class SortingMethods {
 
     // HEAP SORT
     public static <T> void heapSort(T[] array, Comparator<T> comparator) {
-
+        int n = array.length;
+        buildMinHeap(array, comparator);
+        for(int i = n-1; i > 1; i--){
+            swap(array, 0, i);
+            n = n-1;
+            heapify(array, 0, n, comparator);
+        }
     }
 
+    //BUILDMAXHEAP 
+    private static <T> void buildMinHeap(T[] array, Comparator<T> comparator){
+        int n = array.length;
+        for(int i = (n/2); i > 0; i--){
+            heapify(array, i, n, comparator);
+        }
+    }
+
+    //HEAPIFY
+    private static <T> void heapify(T[] array, int i, int n, Comparator<T> comparator){
+        int left = (2*i) + 1;
+        int right = (2*i) + 2;
+        int smallest = i;
+
+        if(left < n && (comparator.compare(array[left], array[smallest]) < 0)){
+            smallest = left;
+        }
+        if(right < n && (comparator.compare(array[right], array[smallest]) < 0)){
+            smallest = right;
+        }
+        if(smallest != i){
+            swap(array, i, smallest);
+            heapify(array, smallest, n, comparator);
+        }
+    }
+    
     // SWAP
     private static <T> void swap (T[] array, int a, int b) {
         T temp = array[a];
         array[a] = array[b];
         array[b] = temp;
-
     }
 }
