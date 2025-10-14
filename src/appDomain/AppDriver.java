@@ -161,6 +161,10 @@ public class AppDriver
                 sortingType = arg.charAt(2);
             }
         }
+        if (fileName == null || fileName.isEmpty()) {
+            System.out.println("Error: File name not provided.");
+            System.exit(1);
+        }
     }
 
     // method to determine the user's input to know what to compare each shape with
