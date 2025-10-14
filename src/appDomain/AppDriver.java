@@ -49,6 +49,17 @@ public class AppDriver
             e.printStackTrace();
         }
 
+        // TEMPORARY DELETE LATER!!, ts part is just to make sure that file reader is working - air
+        Scanner tempInput = null;
+        try { tempInput = new Scanner ( inputFile );
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        tempInput.useDelimiter("\\Z"); // \Z matches end of input
+        String allText = tempInput.next();
+        System.out.println("RAH IM WORKING!!!!!!! File content:\n" + allText);
+        tempInput.close();
+        
         int numberOfShapesInFile = input.nextInt();
         AbstractShape[] shapes = new AbstractShape[numberOfShapesInFile]; // Creating an ARRAY and we need to know the size of the array beforehand
 
@@ -113,7 +124,7 @@ public class AppDriver
             ShapeSorter.mergeSort(shapes, comparator, 0, shapes.length-1);
         }
         else if (sortingType == 'z') {
-            ShapeSorter.heapSort();
+            //ShapeSorter.heapSort();
         }
         //stop the timer
         stop = System.nanoTime();
