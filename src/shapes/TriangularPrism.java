@@ -1,19 +1,16 @@
 package shapes;
 
-public class TriangularPrism extends AbstractShape
+public class TriangularPrism extends AbstractPrism
 {
-	double side;
-	
 	//constructor
 	public TriangularPrism (double height, double side) {
-		super(height);
-		
-		this.side = side;
+		super(height, side);
 	}
 	
 	//methods
 	@Override
 	public double calcBaseArea() {
+		double side = getSide();
 		double sideSquared = side * side;
 		double squareRoot3 = Math.sqrt(3);
 		

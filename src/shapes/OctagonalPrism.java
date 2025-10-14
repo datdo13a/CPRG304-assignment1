@@ -1,16 +1,12 @@
 package shapes;
 
-public class OctagonalPrism extends AbstractShape
+public class OctagonalPrism extends AbstractPrism
 {
-	double side;
-	
 	/*
 	 * Constructor
 	 */
 	public OctagonalPrism (double height, double side) {
-		super(height);
-		
-		this.side = side;
+		super(height, side);
 	}
 
 	/*
@@ -18,6 +14,7 @@ public class OctagonalPrism extends AbstractShape
 	 */
 	@Override
 	public double calcBaseArea() {
+		double side = getSide();
 		double sideSquared = side * side;
 		double squareRootOfTwo = Math.sqrt(2);
 		

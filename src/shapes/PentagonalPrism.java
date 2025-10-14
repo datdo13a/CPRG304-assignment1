@@ -1,19 +1,16 @@
 package shapes;
 
-public class PentagonalPrism extends AbstractShape
+public class PentagonalPrism extends AbstractPrism
 {
-	double side;
-	
 	// constructor
 	public PentagonalPrism (double height, double side) {
-		super(height);
-		
-		this.side = side;
+		super(height, side);
 	}
 
 	// methods
 	@Override
 	public double calcBaseArea() {
+		double side = getSide();
 		double sideSquared = side * side;
 		
 		//convert degrees to radians
