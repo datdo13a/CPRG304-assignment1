@@ -1,6 +1,6 @@
 package appDomain;
 import shapes.*;
-import shapes.SortingMethods;
+import utilities.SortingMethods;
 
 import java.io.File;
 import java.io.FileNotFoundException;
