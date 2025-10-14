@@ -1,5 +1,6 @@
 package appDomain;
 import shapes.*;
+import shapes.SortingMethods;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -109,19 +110,19 @@ public class AppDriver
         // start the timer
         start = System.nanoTime();
         if ( sortingType == 'b') {
-            ShapeSorter.bubbleSort(shapes, comparator);
+            SortingMethods.bubbleSort(shapes, comparator);
         }
         else if (sortingType == 's') {
-            ShapeSorter.selectionSort(shapes, comparator);
+            SortingMethods.selectionSort(shapes, comparator);
         }
         else if(sortingType == 'i') {
-            ShapeSorter.insertionSort(shapes, comparator);
+            SortingMethods.insertionSort(shapes, comparator);
         }
         else if(sortingType == 'q') {
-            ShapeSorter.quickSort(shapes, comparator, 0, shapes.length-1);
+            SortingMethods.quickSort(shapes, comparator, 0, shapes.length-1);
         }
         else if (sortingType == 'm') {
-            ShapeSorter.mergeSort(shapes, comparator, 0, shapes.length-1);
+            SortingMethods.mergeSort(shapes, comparator, 0, shapes.length-1);
         }
         else if (sortingType == 'z') {
             //ShapeSorter.heapSort();

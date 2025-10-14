@@ -1,9 +1,9 @@
-package shapes;
+package utilities;
 import java.util.Arrays;
 import java.util.Comparator;
 
 
-public class ShapeSorter {
+public class SortingMethods {
     // SELECTION SORT
     public static <T> void selectionSort(T[] array, Comparator<T> comparator) {
         for (int i = 0; i < array.length - 1; i++ ) {
