@@ -189,9 +189,24 @@ public class AppDriver
     }
 
     // need to implement a way to print out each shape into the console
-    private static void displayShapes(AbstractShape[] shapes) {
-
+    private static void displayShapes(AbstractShape[] shapes) 
+	{
+    	if (shapes == null || shapes.length == 0) {
+        System.out.println("No shapes found to display.");
+        return;
     }
 
+    // print first shape
+    System.out.println("First shape: " + shapes[0]);
+
+    // print every 1000th shape
+    for (int i = 1000; i < shapes.length; i += 1000) {
+        System.out.println("Shape #" + i + ": " + shapes[i]);
+    }
+
+    // print last shape
+    System.out.println("Last shape: " + shapes[shapes.length - 1]);
+
 }
+
 
