@@ -27,6 +27,6 @@ public abstract class AbstractShape implements Comparable<AbstractShape> {
 	// Comparable, comparing between two shapes and their HEIGHT
     @Override
 	public int compareTo(AbstractShape other) {
-		return Double.compare(other.getHeight(), this.getHeight());
+		return Double.compare(this.getHeight(), other.getHeight());
 	}
 }
