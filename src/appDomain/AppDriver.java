@@ -108,27 +108,34 @@ public class AppDriver
         Comparator<AbstractShape> comparator = getComparator(compareType);
 
         // start the timer
-        start = System.nanoTime();
-        if ( sortingType == 'b') {
-            SortingMethods.bubbleSort(shapes, comparator);
-        }
-        else if (sortingType == 's') {
-            SortingMethods.selectionSort(shapes, comparator);
-        }
-        else if(sortingType == 'i') {
-            SortingMethods.insertionSort(shapes, comparator);
-        }
-        else if(sortingType == 'q') {
-            SortingMethods.quickSort(shapes, comparator, 0, shapes.length-1);
-        }
-        else if (sortingType == 'm') {
-            SortingMethods.mergeSort(shapes, comparator, 0, shapes.length-1);
-        }
-        else if (sortingType == 'z') {
-            //ShapeSorter.heapSort();
-        }
-        //stop the timer
-        stop = System.nanoTime();
+       	long startTime = System.nanoTime();
+
+		if (sortingType == 'b') {
+    		SortingMethods.bubbleSort(shapes, comparator);
+		}
+		else if (sortingType == 's') {
+    		SortingMethods.selectionSort(shapes, comparator);
+		} 
+		else if (sortingType == 'i') {
+    		SortingMethods.insertionSort(shapes, comparator);
+		} 
+		else if (sortingType == 'm') {
+    		SortingMethods.mergeSort(shapes, comparator, 0, shapes.length - 1);
+		} 
+		else if (sortingType == 'q') {
+    		SortingMethods.quickSort(shapes, comparator, 0, shapes.length - 1);
+		} 
+		else if (sortingType == 'z') {
+    		SortingMethods.heapSort(shapes, comparator);
+		} 
+		else {
+    		System.out.println("Invalid sorting type entered.");
+    	return;
+		}
+
+		long endTime = System.nanoTime();
+		double totalTime = (endTime - startTime) / 1_000_000.0; // convert to ms
+
 
 		// refer to demo02 Student.java for comparable implementation, and
 		// NameCompare.java or GradeCompare for comparator implementations
@@ -187,3 +194,4 @@ public class AppDriver
     }
 
 }
+
