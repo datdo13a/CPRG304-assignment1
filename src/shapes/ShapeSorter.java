@@ -110,9 +110,9 @@ public class ShapeSorter {
         return i + 1;
     }
 
-    // BUCKET SORT
-    private static <T> void bucketSort(T[] array, Comparator<T> comparator, int low, int high) {
-        
+    // HEAP SORT
+    private static <T> void heapSort(T[] array, Comparator<T> comparator, int low, int high) {
+
     }
 
     // SWAP

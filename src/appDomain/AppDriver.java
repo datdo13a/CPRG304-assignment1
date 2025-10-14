@@ -113,7 +113,7 @@ public class AppDriver
             ShapeSorter.mergeSort(shapes, comparator, 0, shapes.length-1);
         }
         else if (sortingType == 'z') {
-            ShapeSorter.bucketSort();
+            ShapeSorter.heapSort();
         }
         //stop the timer
         stop = System.nanoTime();
