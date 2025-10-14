@@ -50,17 +50,6 @@ public class AppDriver
             e.printStackTrace();
         }
 
-        // TEMPORARY DELETE LATER!!, ts part is just to make sure that file reader is working - air
-        Scanner tempInput = null;
-        try { tempInput = new Scanner ( inputFile );
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        tempInput.useDelimiter("\\Z"); // \Z matches end of input
-        String allText = tempInput.next();
-        System.out.println("RAH IM WORKING!!!!!!! File content:\n" + allText);
-        tempInput.close();
-        
         int numberOfShapesInFile = input.nextInt();
         AbstractShape[] shapes = new AbstractShape[numberOfShapesInFile]; // Creating an ARRAY and we need to know the size of the array beforehand
 
@@ -144,6 +133,7 @@ public class AppDriver
 		// algorithm on a list of comparables to sort using either the
 		// natural order (comparable) or other orders (comparators)
 
+		displayShapes(shapes);
 	}
 
     private static void parseArgs(String[] args) {
@@ -192,21 +182,21 @@ public class AppDriver
     private static void displayShapes(AbstractShape[] shapes) 
 	{
     	if (shapes == null || shapes.length == 0) {
-        System.out.println("No shapes found to display.");
-        return;
-    }
-
-    // print first shape
-    System.out.println("First shape: " + shapes[0]);
-
-    // print every 1000th shape
-    for (int i = 1000; i < shapes.length; i += 1000) {
-        System.out.println("Shape #" + i + ": " + shapes[i]);
-    }
-
-    // print last shape
-    System.out.println("Last shape: " + shapes[shapes.length - 1]);
-
+	        System.out.println("No shapes found to display.");
+	        return;
+	    }
+	
+	    // print first shape
+	    System.out.println("First shape: " + shapes[0]);
+	
+	    // print every 1000th shape
+	    for (int i = 1000; i < shapes.length; i += 1000) {
+	        System.out.println("Shape #" + i + ": " + shapes[i]);
+	    }
+	
+	    // print last shape
+	    System.out.println("Last shape: " + shapes[shapes.length - 1]);
+	}
 }
 
 
