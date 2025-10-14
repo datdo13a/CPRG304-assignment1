@@ -32,7 +32,7 @@ public class Cone extends AbstractShape
 		double pi = 3.14;
 		double radiusSquared = radius * radius;
 		
-		double volume = (1/3) * pi * radiusSquared * getHeight();
+		double volume = (1.0/3.0) * pi * radiusSquared * getHeight();
 		
 		return volume;
 	}

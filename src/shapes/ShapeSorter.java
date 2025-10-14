@@ -2,8 +2,8 @@ package shapes;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class ShapeSorter {
 
+public class ShapeSorter {
     // SELECTION SORT
     public static <T> void selectionSort(T[] array, Comparator<T> comparator) {
         for (int i = 0; i < array.length - 1; i++ ) {
@@ -21,7 +21,7 @@ public class ShapeSorter {
     // BUBBLE SORT
     public static <T> void bubbleSort(T[] array, Comparator<T> comparator) {
         for (int i = 0; i < array.length - 1; i++ ) {
-            for (int j = 0; array.length > j - i; j++ ) {
+            for (int j = 0; j < array.length - 1 - i; j++ ) {
                 if (comparator.compare(array[j], array[j+1]) > 0) {
                     swap(array, j, j+1);
                 }
@@ -35,6 +35,7 @@ public class ShapeSorter {
             int j = i;
             while (j > 0 && comparator.compare(array[j], array[j-1]) > 0) {
                 swap(array, j, j-1);
+                j--;
             }
         }
     }
@@ -110,6 +111,9 @@ public class ShapeSorter {
     }
 
     // BUCKET SORT
+    private static <T> void bucketSort(T[] array, Comparator<T> comparator, int low, int high) {
+        
+    }
 
     // SWAP
     private static <T> void swap (T[] array, int a, int b) {

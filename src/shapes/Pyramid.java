@@ -26,7 +26,7 @@ public class Pyramid extends AbstractShape
 		double sideSquared = side * side;
 		
 		
-		return (1/3) * sideSquared * getHeight();
+		return (1.0/3.0) * sideSquared * getHeight();
 	}
 	
 
