@@ -142,6 +142,7 @@ public class SortingMethods {
         return i + 1;
     }
 
+
     // HEAP SORT
     /**
      * goes through the array and finds the lowest 
@@ -152,31 +153,30 @@ public class SortingMethods {
     public static <T> void heapSort(T[] array, Comparator<T> comparator) {
         int n = array.length;
         buildMinHeap(array, comparator);
-        for(int i = n-1; i > 1; i--){
-            swap(array, 0, i); //switches the first item with the ne
-            n = n-1;
-            heapify(array, 0, n, comparator);
+        for(int i = n - 1; i > 0; i--){
+            swap(array, 0, i);          // move smallest to the end
+            heapify(array, 0, i, comparator); // heap size is now i
         }
     }
 
-    //HEAP SORT 
+    //HEAP SORT
     private static <T> void buildMinHeap(T[] array, Comparator<T> comparator){
         int n = array.length;
-        for(int i = (n/2); i > 0; i--){
+        for(int i = n / 2 - 1; i >= 0; i--){
             heapify(array, i, n, comparator);
         }
     }
 
     //HEAP SORT
     private static <T> void heapify(T[] array, int i, int n, Comparator<T> comparator){
-        int left = (2*i) + 1;
-        int right = (2*i) + 2;
+        int left = 2*i + 1;
+        int right = 2*i + 2;
         int smallest = i;
 
-        if(left < n && (comparator.compare(array[left], array[smallest]) < 0)){
+        if(left < n && comparator.compare(array[left], array[smallest]) < 0){
             smallest = left;
         }
-        if(right < n && (comparator.compare(array[right], array[smallest]) < 0)){
+        if(right < n && comparator.compare(array[right], array[smallest]) < 0){
             smallest = right;
         }
         if(smallest != i){
