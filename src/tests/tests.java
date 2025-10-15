@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * tests n stuff
+ * sorting algos test
  *  - checks reference (ascending),
  *  - checks reversed reference (descending),
  *  - or is incorrect.
