@@ -203,7 +203,7 @@ public class AppDriver
 	    }
 	
 	    // print first shape
-	    System.out.println("First shape: " + shapes[0]);
+	    System.out.println("First shape: " + shapes[0] + " " + comparisonString + ": " + getValueToDisplay(shapes[0], compareType));
 	
 	    // print every 1000th shape
 	    for (int i = 1000; i < shapes.length; i += 1000) {
@@ -211,7 +211,7 @@ public class AppDriver
 	    }
 	
 	    // print last shape
-	    System.out.println("Last shape: " + shapes[shapes.length - 1]);
+	    System.out.println("Last shape: " + shapes[shapes.length - 1] + " " + comparisonString + ": " + getValueToDisplay(shapes[shapes.length - 1], compareType));
 	}
 
     // Helper method to get the correct value based on compareType
