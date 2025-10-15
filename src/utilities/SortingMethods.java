@@ -35,7 +35,7 @@ public class SortingMethods {
     public static <T> void bubbleSort(T[] array, Comparator<T> comparator) {
         for (int i = 0; i < array.length - 1; i++ ) {
             for (int j = 0; j < array.length - 1 - i; j++ ) {
-                if (comparator.compare(array[j], array[j+1]) > 0) {
+                if (comparator.compare(array[j], array[j+1]) < 0) {
                     swap(array, j, j+1);//if the value after the item at j is greater, they switch
                 }
             }
