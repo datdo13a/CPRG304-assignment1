@@ -3,6 +3,7 @@ package shapes;
  * Abstract shape class that defines height area and volume
  */
 public abstract class AbstractShape implements Comparable<AbstractShape> {
+
 	private double height;
 	
 	// constructor

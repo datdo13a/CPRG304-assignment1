@@ -8,34 +8,44 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 /**
+ * Application driver for sorting geometric shapes.
  * <p>
- * This application driver code is designed to be used as a basis for the
- * Complexity and Sorting assignment that will be developed in the CPRG304 
- * F2025 class at SAIT. The implementors of this applications will be required
- * to add all the correct functionality.
+ * This application reads shape data from a file, sorts the shapes using various
+ * sorting algorithms, and displays the results. Command line arguments control
+ * which file to read, what property to compare (height/volume/area), and which
+ * sorting algorithm to use.
  * </p>
+ *
+ * @author Team5
+ * @version 1.0
  */
 public class AppDriver
 {
-	/**
-	 *  The main method is the entry point of the application.
-	 *  
-	 *  @param args The input to control the execution of the application.
-	 */
+    /**
+     * The file path for the shapes data file.
+     */
+    private static String fileName = "res/shapes1.txt";
 
-    // static variables
-    private static String fileName = "res/shapes1.txt"; //the file path: -f
-    private static char compareType = 'h'; // the type to compare (height, volume, area): h, v, a
-    private static char sortingType; // the sorting type to be used: b, s, i, m, q, z
+    /**
+     * The type of comparison to use: 'h' for height, 'v' for volume, 'a' for area.
+     */
+    private static char compareType = 'h';
 
-	public static void main( String[] args )
-	{
-		// TODO Auto-generated method stub
+    /**
+     * The sorting algorithm to use: 'b' bubble, 's' selection, 'i' insertion,
+     * 'm' merge, 'q' quick, 'z' heap.
+     */
+    private static char sortingType;
 
-		// refer to demo00 BasicFileIO.java for a simple example on how to
-		// read data from a text file
-        // TODO - create way for user to choose which file to read
-
+    /**
+     * Main entry point of the application.
+     * Parses command line arguments, reads shapes from file, sorts them,
+     * and displays the results with timing information.
+     *
+     * @param args Command line arguments in format: -ffilename -t[h/v/a] -s[b/s/i/m/q/z]
+     */
+    public static void main( String[] args )
+    {
         parseArgs(args);
 
         File inputFile = new File(fileName);
@@ -51,92 +61,87 @@ public class AppDriver
         }
 
         int numberOfShapesInFile = input.nextInt();
-        AbstractShape[] shapes = new AbstractShape[numberOfShapesInFile]; // Creating an ARRAY and we need to know the size of the array beforehand
+        AbstractShape[] shapes = new AbstractShape[numberOfShapesInFile];
 
         int index = 0;
 
         while (input.hasNext())
         {
-            String shapeName = input.next(); // Getting the shape name ie. Cone, Pyramid, Prism etc
+            String shapeName = input.next();
             double height =  Double.parseDouble(input.next());
-            double secondValue = Double.parseDouble(input.next()); // This will either the side or radius depending on shape
+            double secondValue = Double.parseDouble(input.next());
 
             AbstractShape shape = null;
 
             if (shapeName.equalsIgnoreCase("Cylinder")) {
-                shape = new Cylinder(height, secondValue);  // secondValue is radius
+                shape = new Cylinder(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("Cone")) {
-                shape = new Cone(height, secondValue);  // secondValue is radius
+                shape = new Cone(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("Pyramid")) {
-                shape = new Pyramid(height, secondValue);  // secondValue is side
+                shape = new Pyramid(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("SquarePrism")) {
-                shape = new SquarePrism(height, secondValue);  // secondValue is side
+                shape = new SquarePrism(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("TriangularPrism")) {
-                shape = new TriangularPrism(height, secondValue);  // secondValue is side
+                shape = new TriangularPrism(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("PentagonalPrism")) {
-                shape = new PentagonalPrism(height, secondValue);  // secondValue is side
+                shape = new PentagonalPrism(height, secondValue);
             }
             else if (shapeName.equalsIgnoreCase("OctagonalPrism")) {
-                shape = new OctagonalPrism(height, secondValue);  // secondValue is side
+                shape = new OctagonalPrism(height, secondValue);
             }
 
-            shapes[index] = shape; // we now add the shape we just created to the array
-            index++; // move to next index in the array list for next shape to be added
+            shapes[index] = shape;
+            index++;
         }
 
-		// refer to demo01 Test.java for an example on how to parse command
-		// line arguments and benchmarking tests
         long start, stop;
 
-        // Get comparator based on compareType
         Comparator<AbstractShape> comparator = getComparator(compareType);
 
-        // start the timer
-       	long startTime = System.nanoTime();
+        long startTime = System.nanoTime();
 
-		if (sortingType == 'b') {
-    		SortingMethods.bubbleSort(shapes, comparator);
-		}
-		else if (sortingType == 's') {
-    		SortingMethods.selectionSort(shapes, comparator);
-		} 
-		else if (sortingType == 'i') {
-    		SortingMethods.insertionSort(shapes, comparator);
-		} 
-		else if (sortingType == 'm') {
-    		SortingMethods.mergeSort(shapes, comparator, 0, shapes.length - 1);
-		} 
-		else if (sortingType == 'q') {
-    		SortingMethods.quickSort(shapes, comparator, 0, shapes.length - 1);
-		} 
-		else if (sortingType == 'z') {
-    		SortingMethods.heapSort(shapes, comparator);
-		} 
-		else {
-    		System.out.println("Invalid sorting type entered.");
-    	return;
-		}
+        if (sortingType == 'b') {
+            SortingMethods.bubbleSort(shapes, comparator);
+        }
+        else if (sortingType == 's') {
+            SortingMethods.selectionSort(shapes, comparator);
+        }
+        else if (sortingType == 'i') {
+            SortingMethods.insertionSort(shapes, comparator);
+        }
+        else if (sortingType == 'm') {
+            SortingMethods.mergeSort(shapes, comparator, 0, shapes.length - 1);
+        }
+        else if (sortingType == 'q') {
+            SortingMethods.quickSort(shapes, comparator, 0, shapes.length - 1);
+        }
+        else if (sortingType == 'z') {
+            SortingMethods.heapSort(shapes, comparator);
+        }
+        else {
+            System.out.println("Invalid sorting type entered.");
+            return;
+        }
 
-		long endTime = System.nanoTime();
-		double totalTime = (endTime - startTime) / 1_000_000.0; // convert to ms
+        long endTime = System.nanoTime();
+        double totalTime = (endTime - startTime) / 1_000_000.0;
 
+        displayShapes(shapes);
+        System.out.println("sort total time taken: " + totalTime + "ms, using sortingType: " + sortingType);
+    }
 
-		// refer to demo02 Student.java for comparable implementation, and
-		// NameCompare.java or GradeCompare for comparator implementations
-
-		// refer to demo02 KittySort.java on how to use a custom sorting
-		// algorithm on a list of comparables to sort using either the
-		// natural order (comparable) or other orders (comparators)
-
-		displayShapes(shapes);
-		System.out.println("sort total time taken: " + totalTime + "ms, using sortingType: " + sortingType);
-	}
-
+    /**
+     * Parses command line arguments to extract file name, comparison type, and sorting type.
+     * Arguments are case-insensitive and order-independent.
+     * If no path is specified for the file, automatically prepends "res/".
+     *
+     * @param args Array of command line arguments
+     */
     private static void parseArgs(String[] args) {
         if (args.length < 3) {
             System.out.println("Not enough arguments.");
@@ -144,24 +149,16 @@ public class AppDriver
         }
 
         for (String arg : args) {
-            // Check if argument starts with -f or -F
             if (arg.toLowerCase().startsWith("-f")) {
-                // Extract filename (everything after "-f")
-                fileName = arg.substring(2);  // Gets string starting at index 2
-                // If filename doesn't include path, prepend "res/"
+                fileName = arg.substring(2);
                 if (!fileName.contains("/") && !fileName.contains("\\")) {
                     fileName = "res/" + fileName;
                 }
-
             }
-            // Check if argument starts with -t or -T
             else if (arg.toLowerCase().startsWith("-t")) {
-                // Extract compare type (character after "-t")
-                compareType = arg.charAt(2);  // Gets character at index 2
+                compareType = arg.charAt(2);
             }
-            // Check if argument starts with -s or -S
             else if (arg.toLowerCase().startsWith("-s")) {
-                // Extract sort type (character after "-s")
                 sortingType = arg.charAt(2);
             }
         }
@@ -171,7 +168,13 @@ public class AppDriver
         }
     }
 
-    // method to determine the user's input to know what to compare each shape with
+    /**
+     * Returns the appropriate comparator based on the comparison type.
+     *
+     * @param compareType The type of comparison: 'v'/'V' for volume,
+     *                    'a'/'A' for area, 'h'/'H' for height
+     * @return Comparator for comparing AbstractShape objects
+     */
     private static Comparator<AbstractShape> getComparator(char compareType) {
         if (compareType == 'v' || compareType == 'V') {
             return new VolumeCompare();
@@ -179,14 +182,20 @@ public class AppDriver
         else if (compareType == 'a' || compareType == 'A') {
             return new AreaCompare();
         }
-        else {  // Default to height (h or H)
-            return Comparator.naturalOrder();  // Uses compareTo from AbstractShape
+        else {
+            return Comparator.naturalOrder();
         }
     }
 
-    // need to implement a way to print out each shape into the console
-    private static void displayShapes(AbstractShape[] shapes) 
-	{
+    /**
+     * Displays the sorted shapes to the console.
+     * Shows the first shape, every 1000th shape, and the last shape
+     * along with their comparison values.
+     *
+     * @param shapes Array of sorted AbstractShape objects
+     */
+    private static void displayShapes(AbstractShape[] shapes)
+    {
         String comparisonString = "";
         if (compareType == 'v' || compareType == 'V') {
             comparisonString = "Volume";
@@ -197,24 +206,28 @@ public class AppDriver
         else {
             comparisonString = "Height";
         }
-    	if (shapes == null || shapes.length == 0) {
-	        System.out.println("No shapes found to display.");
-	        return;
-	    }
-	
-	    // print first shape
-	    System.out.println("First shape: " + shapes[0] + " " + comparisonString + ": " + getValueToDisplay(shapes[0], compareType));
-	
-	    // print every 1000th shape
-	    for (int i = 1000; i < shapes.length; i += 1000) {
-	        System.out.println("Shape #" + i + ": " + shapes[i] + " " + comparisonString + ": " + getValueToDisplay(shapes[i], compareType));
-	    }
-	
-	    // print last shape
-	    System.out.println("Last shape: " + shapes[shapes.length - 1] + " " + comparisonString + ": " + getValueToDisplay(shapes[shapes.length - 1], compareType));
-	}
+        if (shapes == null || shapes.length == 0) {
+            System.out.println("No shapes found to display.");
+            return;
+        }
 
-    // Helper method to get the correct value based on compareType
+        System.out.println("First shape: " + shapes[0] + " " + comparisonString + ": " + getValueToDisplay(shapes[0], compareType));
+
+        for (int i = 1000; i < shapes.length; i += 1000) {
+            System.out.println("Shape #" + i + ": " + shapes[i] + " " + comparisonString + ": " + getValueToDisplay(shapes[i], compareType));
+        }
+
+        System.out.println("Last shape: " + shapes[shapes.length - 1] + " " + comparisonString + ": " + getValueToDisplay(shapes[shapes.length - 1], compareType));
+    }
+
+    /**
+     * Helper method to extract the appropriate value from a shape based on comparison type.
+     *
+     * @param shape The AbstractShape to get the value from
+     * @param compareType The type of value to retrieve: 'v'/'V' for volume,
+     *                    'a'/'A' for area, or 'h'/'H' for height
+     * @return The numerical value for the specified property
+     */
     private static double getValueToDisplay(AbstractShape shape, char compareType) {
         if (compareType == 'v' || compareType == 'V') {
             return shape.calcVolume();
@@ -222,10 +235,8 @@ public class AppDriver
         else if (compareType == 'a' || compareType == 'A') {
             return shape.calcBaseArea();
         }
-        else {  // height
+        else {
             return shape.getHeight();
         }
     }
 }
-
-
