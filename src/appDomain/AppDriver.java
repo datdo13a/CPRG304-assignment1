@@ -148,6 +148,11 @@ public class AppDriver
             if (arg.toLowerCase().startsWith("-f")) {
                 // Extract filename (everything after "-f")
                 fileName = arg.substring(2);  // Gets string starting at index 2
+                // If filename doesn't include path, prepend "res/"
+                if (!fileName.contains("/") && !fileName.contains("\\")) {
+                    fileName = "res/" + fileName;
+                }
+
             }
             // Check if argument starts with -t or -T
             else if (arg.toLowerCase().startsWith("-t")) {
@@ -182,22 +187,45 @@ public class AppDriver
     // need to implement a way to print out each shape into the console
     private static void displayShapes(AbstractShape[] shapes) 
 	{
+        String comparisonString = "";
+        if (compareType == 'v' || compareType == 'V') {
+            comparisonString = "Volume";
+        }
+        else if (compareType == 'a' || compareType == 'A') {
+            comparisonString = "Area";
+        }
+        else {
+            comparisonString = "Height";
+        }
     	if (shapes == null || shapes.length == 0) {
 	        System.out.println("No shapes found to display.");
 	        return;
 	    }
 	
 	    // print first shape
-	    System.out.println("First shape: " + shapes[0]);
+	    System.out.println("First shape: " + shapes[0] + " " + comparisonString + ": " + getValueToDisplay(shapes[0], compareType));
 	
 	    // print every 1000th shape
 	    for (int i = 1000; i < shapes.length; i += 1000) {
-	        System.out.println("Shape #" + i + ": " + shapes[i]);
+	        System.out.println("Shape #" + i + ": " + shapes[i] + " " + comparisonString + ": " + getValueToDisplay(shapes[i], compareType));
 	    }
 	
 	    // print last shape
-	    System.out.println("Last shape: " + shapes[shapes.length - 1]);
+	    System.out.println("Last shape: " + shapes[shapes.length - 1] + " " + comparisonString + ": " + getValueToDisplay(shapes[shapes.length - 1], compareType));
 	}
+
+    // Helper method to get the correct value based on compareType
+    private static double getValueToDisplay(AbstractShape shape, char compareType) {
+        if (compareType == 'v' || compareType == 'V') {
+            return shape.calcVolume();
+        }
+        else if (compareType == 'a' || compareType == 'A') {
+            return shape.calcBaseArea();
+        }
+        else {  // height
+            return shape.getHeight();
+        }
+    }
 }
 
 

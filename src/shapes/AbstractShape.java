@@ -23,6 +23,12 @@ public abstract class AbstractShape implements Comparable<AbstractShape> {
 	public abstract double calcBaseArea();
 	
 	public abstract double calcVolume();
+
+    //toString
+    @Override
+    public String toString() {
+        return this.getClass().getName();
+    }
 	
 	// Comparable, comparing between two shapes and their HEIGHT
     @Override
