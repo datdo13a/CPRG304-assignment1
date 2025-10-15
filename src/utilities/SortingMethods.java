@@ -78,8 +78,8 @@ public class SortingMethods {
         int size1 = middle - left + 1;
         int size2 = right - middle;
         //creates two subarrays 
-        T[] leftArray = Arrays.copyOfRange(array, left, left + size1); 
-        T[] rightArray = Arrays.copyOfRange(array, left + size1, right + size2);
+        T[] leftArray = Arrays.copyOfRange(array, left, left + size1);
+        T[] rightArray = Arrays.copyOfRange(array, middle + 1, right + 1);
 
         int i = 0, j = 0, k = left;
 
